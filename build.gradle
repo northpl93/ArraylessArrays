@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
+    }
+    dependencies {
+        classpath 'me.champeau.gradle:jmh-gradle-plugin:0.5.0'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'io.freefair.lombok' version '4.1.6'
+    id 'me.champeau.gradle.jmh' version '0.5.0'
+}
+
+apply plugin: 'me.champeau.gradle.jmh'
+apply plugin: 'io.freefair.lombok'
+
+group 'pl.north93.arrays'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.ow2.asm/asm
+    compile group: 'org.ow2.asm', name: 'asm', version: '7.3.1'
+
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
+}
+
+test {
+    useJUnitPlatform()
+}
